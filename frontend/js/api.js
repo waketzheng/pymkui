@@ -498,11 +498,8 @@ async function checkAuth() {
         const result = await Api.getApiList();
         if (result.code === 0) {
             return true;
-        } else if (result.code === -100) {
-            if (!isLoginPage) {
-                window.location.href = 'login.html';
-            }
-            return false;
+        } else if (result.code !== -100) {
+            Api.setCookie('');
         }
         return false;
     } catch (error) {
